@@ -23,6 +23,12 @@ function mostrar()
 	var acumuladorCantAlcohol;
 	var acumuladorCantBarbijo;
 	var acumuladorCantJabon;
+	var marcaAlchol;
+	var marcaBarbijo;
+	var marcaJabon;
+	var fabricanteAlcohol;
+	var fabricanteBarbijo;
+	var fabricanteJabon;
 
 	contadorProductos=0;
 	contadorAlcohol=0;
@@ -46,7 +52,7 @@ function mostrar()
 			fabricante = prompt("ERROR!Reingrese un fabricante");
 		}
 		cantUnidades= prompt("ingrese un cantidad de unidades");
-		while (isNaN(cantUnidades) == true || cantUnidades <1 ) {
+		while (isNaN(cantUnidades) == true || cantUnidades <1 ||cantUnidades>1000) {
 			cantUnidades = prompt("ERROR!Reingrese un cantidad de Unidades correctas");
 		}
 		/*if(tipoProductos == "alcohol")
@@ -64,6 +70,8 @@ function mostrar()
 			{
 				acumuladorCantAlcohol = precioIngresado;
 				contadorAlcohol = cantUnidades;
+				marcaAlchol=marcaIngresada;
+				fabricanteAlcohol=fabricante;
 			}
 				//acumuladorCantAlcohol = acumuladorCantAlcohol + precioIngresado;
 				contadorAlcohol++;
@@ -84,7 +92,7 @@ function mostrar()
 
 		contadorProductos++;
 	}
-	console.log("El mas barato de los barbijos cuesta: " + acumuladorCantAlcohol);
+	console.log("El mas barato de los barbijos cuesta: " + acumuladorCantAlcohol + "la marca es "+marcaAlchol+" y lo fabrica "+fabricanteAlcohol);
 	
 
 
