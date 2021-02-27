@@ -21,17 +21,19 @@ function mostrar()
 	var contadorBarbijo;
 	var contadorJabon;
 	var acumuladorCantAlcohol;
-	var acumuladorCantBarbijo;
-	var acumuladorCantJabon;
 	var marcaAlchol;
-	var marcaBarbijo;
-	var marcaJabon;
 	var fabricanteAlcohol;
-	var fabricanteBarbijo;
-	var fabricanteJabon;
+	var sumaDeUnidadesAlcohol;
+	var sumaDeUnidadesBarbijo;
+	var sumaDeUnidadesJabon;
+	var promedioCompra;
 
 	contadorProductos=0;
 	contadorAlcohol=0;
+	contadorBarbijo=0;
+	contadorJabon=0;
+
+	
 
 
 	while (contadorProductos<5) {
@@ -55,33 +57,39 @@ function mostrar()
 		while (isNaN(cantUnidades) == true || cantUnidades <1 ||cantUnidades>1000) {
 			cantUnidades = prompt("ERROR!Reingrese un cantidad de Unidades correctas");
 		}
-		/*if(tipoProductos == "alcohol")
-		{
-			if(precioIngresadoAlcohol<precioIngresado || contadorAlcohol == 0)
-			{
-				precioIngresadoAlcohol = precioIngresado;
-				cantUnidadesAlcohol = cantUnidades;
-			}
-			contadorAlcohol++;
-		}*/
+
+		sumaDeUnidadesBarbijo=parseInt(sumaDeUnidadesBarbijo);
+		sumaDeUnidadesJabon=parseInt(sumaDeUnidadesJabon);
+		sumaDeUnidadesAlcohol=parseInt(sumaDeUnidadesAlcohol);
+
+		cantUnidades=parseInt(cantUnidades);
+	
 		switch (tipoProductos) {
 			case "alcohol":
 				if(precioIngresado<acumuladorCantAlcohol || contadorAlcohol == 0)
 			{
 				acumuladorCantAlcohol = precioIngresado;
-				contadorAlcohol = cantUnidades;
+				sumaDeUnidadesAlcohol=cantUnidades;
 				marcaAlchol=marcaIngresada;
 				fabricanteAlcohol=fabricante;
 			}
-				//acumuladorCantAlcohol = acumuladorCantAlcohol + precioIngresado;
+				sumaDeUnidadesAlcohol = sumaDeUnidadesAlcohol+ cantUnidades;
 				contadorAlcohol++;
 				break;
 			case "barbijo":
-				acumuladorCantBarbijo = acumuladorCantBarbijo + cantUnidades;
+				if (contadorBarbijo == 0) 
+				{
+					sumaDeUnidadesBarbijo=cantUnidades;
+				}
+				sumaDeUnidadesBarbijo = sumaDeUnidadesBarbijo + cantUnidades;
 				contadorBarbijo++;
 				break;
 			case  "jabón":
-				acumuladorCantJabon = acumuladorCantJabon + cantUnidades;
+				if (contadorJabon == 0) 
+				{
+					sumaDeUnidadesJabon=cantUnidades;
+				}
+				sumaDeUnidadesJabon = sumaDeUnidadesJabon + cantUnidades;
 				contadorJabon++;
 				break;
 		
@@ -93,6 +101,28 @@ function mostrar()
 		contadorProductos++;
 	}
 	console.log("El mas barato de los barbijos cuesta: " + acumuladorCantAlcohol + "la marca es "+marcaAlchol+" y lo fabrica "+fabricanteAlcohol);
+
+	if (sumaDeUnidadesAlcohol>sumaDeUnidadesBarbijo && sumaDeUnidadesAlcohol>sumaDeUnidadesJabon) {
+		MaxCantidad=sumaDeUnidadesAlcohol;
+		promedioCompra = MaxCantidad/contadorAlcohol;
+	}
+	else
+	{
+		if (sumaDeUnidadesBarbijo>contadorAlcohol && sumaDeUnidadesBarbijo>sumaDeUnidadesJabon) 
+		{
+			MaxCantidad=sumaDeUnidadesBarbijo;
+			promedioCompra = MaxCantidad/contadorBarbijo;
+
+		}
+		else
+		{
+			MaxCantidad=sumaDeUnidadesJabon;
+			promedioCompra = MaxCantidad/contadorJabon;
+
+		}
+	}
+	console.log("El promedio del tipo con mas unidades es : "+promedioCompra);
+	console.log("la suma de unidades de jabon es:"+sumaDeUnidadesJabon);
 	
 
 
